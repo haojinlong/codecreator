@@ -34,6 +34,8 @@ public class ColumnInfo {
 	private FieldInfo fieldInfo;
 	// 是否为主键
 	private boolean primaryKey;
+	// 是否是自增长字段
+	private boolean autoIncrement;
 
 	/**
 	 * @return the columnName
@@ -153,6 +155,21 @@ public class ColumnInfo {
 	 */
 	public void setPrimaryKey(boolean primaryKey) {
 		this.primaryKey = primaryKey;
+	}
+
+	/**
+	 * @return the autoIncrement
+	 */
+	public boolean isAutoIncrement() {
+		return autoIncrement;
+	}
+
+	/**
+	 * @param autoIncrement
+	 *            the autoIncrement to set
+	 */
+	public void setAutoIncrement(boolean autoIncrement) {
+		this.autoIncrement = autoIncrement;
 	}
 
 	public void initFieldInfo() {
