@@ -11,9 +11,6 @@
         <dependent-module archiveName="codecreator-resources-0.5.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/codecreator-resources/codecreator-resources">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="codecreator-commons-0.5.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/codecreator-commons/codecreator-commons">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="java-output-path" value="/codecreator-web/target/classes"/>
         <property name="context-root" value="codecreator-web"/>
     </wb-module>
