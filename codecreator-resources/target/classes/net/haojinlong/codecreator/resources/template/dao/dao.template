@@ -1,0 +1,15 @@
+/**
+ * # ${entityName}Dao.java -- (${date})
+ * 作者：郝金隆(www.haojinlong.net) -- 代码生成器自动生成
+ * 联系方式：haojinlong@189.cn
+ */
+package ${packageName}.dao.inter;
+import ${packageName}.dao.entity.${entityName};
+
+/**
+ * @author 郝金隆【自动生成】
+ * @since ${date}
+ *
+ */
+public interface ${entityName}Dao extends _Dao<${entityName}>{
+}

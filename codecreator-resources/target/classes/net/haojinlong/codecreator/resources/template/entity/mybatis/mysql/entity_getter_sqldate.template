@@ -1,0 +1,7 @@
+	/**
+	 * 获取${fieldName}对应的java.sql.Date对象，对应于${columnName}字段
+	 * @return ${fieldName}对应的java.sql.Date对象
+	 */
+	public java.sql.Date get_${fieldName}() {
+		return new java.sql.Date(${fieldName}.getTime());
+	}

@@ -1,0 +1,2 @@
+<if test="${fieldName} != null">and ${columnName} like #{_like_${fieldName}}</if>
+					

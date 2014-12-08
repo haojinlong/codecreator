@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.jdt.core.IJavaProject"
+            id="codecreator-plugin.contribution1">
+         <menu
+               label="郝金隆系统构建"
+               path="additions"
+               id="net.haojinlong.codecreator">
+            <separator
+                  name="daoCreate">
+            </separator>
+         </menu>
+         <action
+               label="DAO生成"
+               class="net.haojinlong.codecreator.dao.plugin.popup.actions.DaoCreateAction"
+               menubarPath="net.haojinlong.codecreator/daoCreate"
+               enablesFor="1"
+               id="net.haojinlong.codecreator.dao.plugin.popup.actions.DaoCreateAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

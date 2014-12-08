@@ -1,0 +1,140 @@
+
+	<resultMap type="${packageName}.dao.entity.${entityName}" id="${tableName}_mapper">
+		${idMap}
+		${resultMap}
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from ${tableName}
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="${packageName}.dao.entity.${entityName}">
+		select count(1) from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testBy}
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="${packageName}.dao.entity.${entityName}">
+		${bind}
+		select count(1) from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testLike}	
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="${packageName}.dao.entity.${entityName}">
+		insert into ${tableName}(${columnAll})
+		values(${fieldAll})
+	</insert>
+
+	<update id="update" parameterType="${packageName}.dao.entity.${entityName}">
+		update ${tableName}
+		<set>
+			${set}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="${packageName}.dao.entity.${entityName}">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from ${tableName} where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from ${tableName} where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="${packageName}.dao.entity.${entityName}">
+		delete from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testBy}
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="${packageName}.dao.entity.${entityName}">
+		${bind}
+		delete from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testLike}	
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="${tableName}_mapper">
+		select *
+		from ${tableName} where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="${tableName}_mapper">
+		select *
+		from ${tableName}
+	</select>
+
+	<select id="listByEntity" parameterType="${packageName}.dao.entity.${entityName}"
+		resultMap="${tableName}_mapper">
+		select *
+		from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testBy}
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="${packageName}.dao.entity.${entityName}"
+		resultMap="${tableName}_mapper">
+		<if test="_parameter != null">
+			${bind}
+		</if>
+		select *
+		from ${tableName}
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					${testLike}	
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+	

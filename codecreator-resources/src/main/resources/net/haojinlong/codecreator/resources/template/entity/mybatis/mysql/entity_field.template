@@ -1,0 +1,3 @@
+	// 对应字段 ${columnName}
+	private ${shortJavaType} ${fieldName};
+

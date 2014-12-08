@@ -1,0 +1,4 @@
+<if test="${fieldName} != null">
+				<bind name="_like_${columnName}" value="'%' + _parameter.${fieldName} + '%'" />
+			</if>
+			

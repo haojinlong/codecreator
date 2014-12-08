@@ -1,0 +1,17 @@
+	/**
+	 * 获取${fieldName}属性值，对应于${columnName}字段
+	 * @return ${fieldName}值
+	 */
+	public ${shortJavaType} get${fieldNameUpper}() {
+		return ${fieldName};
+	}
+	
+	
+	/**
+	 * 获取${fieldName}属性值，对应于${columnName}字段
+	 * @return ${fieldName}值
+	 */
+	public boolean is_${fieldNameUpper}() {
+		return ${fieldName};
+	}
+

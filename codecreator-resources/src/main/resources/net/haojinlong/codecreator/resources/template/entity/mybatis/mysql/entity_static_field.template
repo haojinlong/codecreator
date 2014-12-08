@@ -1,0 +1,3 @@
+	public static String FIELD_${columnNameUpper} = "${columnName}";
+	public static String FIELD_${columnNameUpper}_ASC = "${columnName} asc";
+	public static String FIELD_${columnNameUpper}_DESC = "${columnName} desc";

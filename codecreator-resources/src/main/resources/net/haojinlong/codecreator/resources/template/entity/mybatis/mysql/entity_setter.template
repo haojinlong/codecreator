@@ -1,0 +1,9 @@
+	/**
+	 * 设置${fieldName}属性值，对应于${columnName}字段
+	 * @param ${fieldName}
+	 *            要设置的${fieldName}属性值
+	 */
+	public void set${fieldNameUpper}(${shortJavaType} ${fieldName}) {
+		this.${fieldName} = ${fieldName};
+	}
+
