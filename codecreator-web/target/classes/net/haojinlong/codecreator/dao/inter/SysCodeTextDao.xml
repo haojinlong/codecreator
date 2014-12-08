@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.SysCodeTextDao">
+	<!-- autocreate_start -->
+	<resultMap type="net.haojinlong.codecreator.dao.entity.SysCodeText" id="sys_code_text_mapper">
+		<id column="id" property="id" />
+		<result column="table_name" property="tableName" />
+		<result column="column_name" property="columnName" />
+		<result column="code" property="code" />
+		<result column="text" property="text" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from sys_code_text
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		select count(1) from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name=#{tableName}</if>
+					<if test="columnName != null">and column_name=#{columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text=#{text}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		<if test="_parameter != null">
+			<if test="tableName != null">
+				<bind name="_like_table_name" value="'%' + _parameter.tableName + '%'" />
+			</if>
+			<if test="columnName != null">
+				<bind name="_like_column_name" value="'%' + _parameter.columnName + '%'" />
+			</if>
+			<if test="text != null">
+				<bind name="_like_text" value="'%' + _parameter.text + '%'" />
+			</if>
+			
+		</if>
+		select count(1) from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name like #{_like_tableName}</if>
+					<if test="columnName != null">and column_name like #{_like_columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text like #{_like_text}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		insert into sys_code_text(table_name,column_name,code,text)
+		values(#{tableName},#{columnName},#{code},#{text})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		update sys_code_text
+		<set>
+			<if test="tableName != null">table_name=#{tableName}, </if>
+			<if test="columnName != null">column_name=#{columnName}, </if>
+			<if test="code != null">code=#{code}, </if>
+			<if test="text != null">text=#{text}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from sys_code_text where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from sys_code_text where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		delete from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name=#{tableName}</if>
+					<if test="columnName != null">and column_name=#{columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text=#{text}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText">
+		<if test="_parameter != null">
+			<if test="tableName != null">
+				<bind name="_like_table_name" value="'%' + _parameter.tableName + '%'" />
+			</if>
+			<if test="columnName != null">
+				<bind name="_like_column_name" value="'%' + _parameter.columnName + '%'" />
+			</if>
+			<if test="text != null">
+				<bind name="_like_text" value="'%' + _parameter.text + '%'" />
+			</if>
+			
+		</if>
+		delete from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name like #{_like_tableName}</if>
+					<if test="columnName != null">and column_name like #{_like_columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text like #{_like_text}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="sys_code_text_mapper">
+		select *
+		from sys_code_text where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="sys_code_text_mapper">
+		select *
+		from sys_code_text
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText"
+		resultMap="sys_code_text_mapper">
+		select *
+		from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name=#{tableName}</if>
+					<if test="columnName != null">and column_name=#{columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text=#{text}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.SysCodeText"
+		resultMap="sys_code_text_mapper">
+		<if test="_parameter != null">
+			<if test="tableName != null">
+				<bind name="_like_table_name" value="'%' + _parameter.tableName + '%'" />
+			</if>
+			<if test="columnName != null">
+				<bind name="_like_column_name" value="'%' + _parameter.columnName + '%'" />
+			</if>
+			<if test="text != null">
+				<bind name="_like_text" value="'%' + _parameter.text + '%'" />
+			</if>
+			
+		</if>
+		select *
+		from sys_code_text
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="tableName != null">and table_name like #{_like_tableName}</if>
+					<if test="columnName != null">and column_name like #{_like_columnName}</if>
+					<if test="code != null">and code=#{code}</if>
+					<if test="text != null">and text like #{_like_text}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+	<!-- autocreate_end -->
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.TableInfoDao">
+	<!-- autocreate_start -->
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.TableInfo" id="t_table_info_mapper">
+		<id column="id" property="id" />
+		<result column="idx" property="idx" />
+		<result column="name" property="name" />
+		<result column="description" property="description" />
+		<result column="version" property="version" />
+		<result column="db_id" property="dbId" />
+		<result column="last_column_idx" property="lastColumnIdx" />
+		<result column="last_index_idx" property="lastIndexIdx" />
+		<result column="create_time" property="createTime" />
+		<result column="create_db_version" property="createDbVersion" />
+		<result column="update_time" property="updateTime" />
+		<result column="update_db_version" property="updateDbVersion" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from t_table_info
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		select count(1) from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		select count(1) from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		insert into t_table_info(idx,name,description,version,db_id,last_column_idx,last_index_idx,create_time,create_db_version,update_time,update_db_version)
+		values(#{idx},#{name},#{description},#{version},#{dbId},#{lastColumnIdx},#{lastIndexIdx},#{createTime},#{createDbVersion},#{updateTime},#{updateDbVersion})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		update t_table_info
+		<set>
+			<if test="idx != null">idx=#{idx}, </if>
+			<if test="name != null">name=#{name}, </if>
+			<if test="description != null">description=#{description}, </if>
+			<if test="version != null">version=#{version}, </if>
+			<if test="dbId != null">db_id=#{dbId}, </if>
+			<if test="lastColumnIdx != null">last_column_idx=#{lastColumnIdx}, </if>
+			<if test="lastIndexIdx != null">last_index_idx=#{lastIndexIdx}, </if>
+			<if test="createTime != null">create_time=#{createTime}, </if>
+			<if test="createDbVersion != null">create_db_version=#{createDbVersion}, </if>
+			<if test="updateTime != null">update_time=#{updateTime}, </if>
+			<if test="updateDbVersion != null">update_db_version=#{updateDbVersion}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from t_table_info where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_table_info where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		delete from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		delete from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="t_table_info_mapper">
+		select *
+		from t_table_info where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="t_table_info_mapper">
+		select *
+		from t_table_info
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo"
+		resultMap="t_table_info_mapper">
+		select *
+		from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.TableInfo"
+		resultMap="t_table_info_mapper">
+		<if test="_parameter != null">
+			<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		</if>
+		select *
+		from t_table_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="idx != null">and idx=#{idx}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="dbId != null">and db_id=#{dbId}</if>
+					<if test="lastColumnIdx != null">and last_column_idx=#{lastColumnIdx}</if>
+					<if test="lastIndexIdx != null">and last_index_idx=#{lastIndexIdx}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="createDbVersion != null">and create_db_version=#{createDbVersion}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="updateDbVersion != null">and update_db_version=#{updateDbVersion}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+									<!-- autocreate_end -->
+</mapper>

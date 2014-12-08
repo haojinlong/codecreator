@@ -1,0 +1,462 @@
+/* ----------------------- lay out ------------------------- */
+html {
+	min-width: 1000px;
+	background: #f9f9f9;
+}
+
+body {
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	background: #f9f9f9 url(images/body_bg.png) top center repeat-y;
+}
+
+div#wrapper {
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	width: 1000px;
+	text-align: left;
+	background: transparent url(images/wrapper_bg.png) top center repeat-y;
+}
+
+div#navsecond {
+	float: left;
+	margin: 0 0 0 0px;
+	padding: 0;
+	border: 0;
+	width: 180px;
+	background: transparent;
+}
+
+div#maincontent {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 650px;
+	background: transparent;
+}
+
+div#sidebar {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 170px;
+	background: transparent;
+}
+
+div#footer {
+	clear: both;
+	margin: 0;
+	padding: 0 10px 0 10px;
+	margin-left: 0px;
+	width: 980px;
+	height: 55px;
+	text-align: center;
+	background: #b6b6b6;
+	border-top: 10px solid #fff;
+	border-bottom: 10px solid #fff;
+}
+
+/* ----------------------- header ------------------------- */
+div#header {
+	margin: 0 auto;
+	width: 1000px;
+	height: 120px;
+	text-align: center;
+	background-color: #efefef;
+	background: transparent url(images/header.png);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+div#header div#header_links {
+	float: left;
+	text-indent: -9999px;
+	width: 200px;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+}
+
+div#header div#header_blank {
+	float: left;
+	text-indent: -9999px;
+	width: 570px;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+}
+
+div#header div#header_info {
+	float: left;
+	width: 230px;
+	height: 120px;
+	text-indent: 0px;
+	text-align: left;
+}
+
+div#header div#header_info li{
+	list-style: none;
+	margin: 0 0 5px 0;
+	font-size: 14px;
+}
+
+div#header  a {
+	display: block;
+	background: transparent url(images/header.png) no-repeat;
+	width: 200px;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/*-----------------------------navfirst-------------------------------*/
+div#navfirst {
+	height: 40px;
+	width: 1000px;
+	margin: 0 0 0 0px;
+	padding: 0;
+	border: 0;
+	background: #fff;
+}
+
+div#navfirst ul#menu {
+	height: 40px;
+	width: 1000px;
+	background: transparent url(images/menu1.png) top left no-repeat;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+div#navfirst ul#menu li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	top: 0;
+}
+
+ul#menu li,ul#menu a {
+	display: block;
+	height: 40px;
+}
+
+div#navfirst ul#menu li a {
+	text-indent: -9999px;
+	overflow: hidden;
+	text-decoration: none;
+}
+
+#javaee {
+	left: 0px;
+	width: 200px;
+}
+
+#mobile {
+	left: 200px;
+	width: 200px;
+}
+
+#bigdata {
+	left: 400px;
+	width: 200px;
+}
+
+#creator {
+	left: 600px;
+	width: 200px;
+}
+
+#help {
+	left: 800px;
+	width: 200px;
+}
+
+#javaee a:hover {
+	background: transparent url(images/menu2.png) 0px 0 no-repeat;
+}
+
+#mobile a:hover {
+	background: transparent url(images/menu2.png) -200px 0 no-repeat;
+}
+
+#bigdata a:hover {
+	background: transparent url(images/menu2.png) -400px 0 no-repeat;
+}
+
+#creator a:hover {
+	background: transparent url(images/menu2.png) -600px 0 no-repeat;
+}
+
+#help a:hover {
+	background: transparent url(images/menu2.png) -800px 0 no-repeat;
+}
+
+body.javaee #javaee {
+	background: transparent url(images/menu2.png) 0px 0 no-repeat;
+}
+
+body.mobile #mobile {
+	background: transparent url(images/menu2.png) -200px 0 no-repeat;
+}
+
+body.bigdata #bigdata {
+	background: transparent url(images/menu2.png) -400px 0 no-repeat;
+}
+
+body.creator #creator {
+	background: transparent url(images/menu2.png) -600px 0 no-repeat;
+}
+
+body.help #help {
+	background: transparent url(images/menu2.png) -800px 0 no-repeat;
+}
+
+/*--------------------------------navsecond-------------------------------------*/
+div#course {
+	background: transparent url(images/course.png) no-repeat;
+	padding: 40px 0 10px 0;
+	margin: 5px 0 0 0;
+}
+
+/*--------------------------------sidebar-------------------------------------*/
+div#download {
+	background: transparent url(images/download.png) no-repeat;
+	padding: 40px 0 10px 0;
+	margin: 5px 0 0 0;
+}
+
+/*----------------------------------maincontent------------------------------------------*/
+div#maincontent h1,div#maincontent h2 {
+	margin: 10px 0 0 10px;
+}
+
+div#maincontent h3 {
+	margin: 5px 0 0 10px;
+}
+
+div#maincontent h4 {
+	margin: 5px 0 0 10px;
+}
+
+div#maincontent p {
+	margin: 5px 0 0 20px;
+}
+
+div#maincontent div {
+	float: left;
+	width: 640px;
+	padding: 10px 0 0 10px;
+	text-align: left;
+	background: transparent url(images/maincontent_line.png) top center
+		no-repeat;
+}
+
+div#maincontent div img {
+	max-width: 610px;
+	padding: 10px 0 0 10px;
+}
+
+div#maincontent div div,div#maincontent div p,div#maincontent div h2,div#maincontent div h3,div#maincontent div h4,div#maincontent div ul
+	{
+	float: none;
+}
+
+div#maincontent div div.thumb {
+	float: left;
+	width: 200px;
+	background: transparent none;
+	padding: 2px 2px 2px 2px;
+	margin: 0;
+}
+
+div#maincontent div div.thumb img {
+	width: 190px;
+}
+
+div#maincontent div div.thumb_desc {
+	float: left;
+	width: 400px;
+	margin: 10px 0 0 0;
+	padding: 0;
+	background: transparent none;
+}
+
+div#maincontent div div.thumb_desc ul {
+	width: 380px;
+	margin: 0;
+	padding: 0;
+}
+
+div#maincontent div div.thumb_desc ul li {
+	width: 380px;
+	margin-left: 24px;
+	padding: 5px 0 0 0;
+}
+
+/* -----------------------------------font---------------------------------- */
+body {
+	font-size: 14px;
+}
+
+div#maincontent h1 {
+	font-size: 20px;
+}
+
+div#maincontent div h2 {
+	font-size: 18px;
+}
+
+div#maincontent div h3 {
+	font-size: 16px;
+}
+
+div#maincontent div h4 {
+	font-size: 14px;
+}
+
+div#navsecond h2,div#sidebar h2,div#maincontent h3,div#maincontent h4 {
+	font-size: 16px;
+}
+
+div#maincontent button,div#maincontent input,div#maincontent select,div#maincontent textarea
+	{
+	font-size: 15px;
+}
+
+body#homefirst div#maincontent div#w3 h2 {
+	font-size: 20px;
+}
+
+div#maincontent div div.code {
+	width: 600px;
+	margin: 10px 0 10px 10px;
+	padding: 0 0 5px 0;
+	font-size: 11px;
+	font-style: italic;
+	border: 1px dotted #785;
+	background: #f5f5f5 none;
+}
+
+div#maincontent div div.result {
+	width: 600px;
+	margin: 10px 0 0 10px;
+	padding: 0 0 5px 0;
+	font-size: 11px;
+	font-style: italic;
+	color: #ff00ff;
+	border: 1px dotted #785;
+	background: #f5f5f5 none;
+}
+
+pre.code {
+	width: 600px;
+	margin: 10px 0 0 10px;
+	padding: 10px;
+	border: 0;
+	font-size: 12px;
+	font-style: italic;
+	color: #ff00ff;
+	border: 1px dotted #785;
+	background: #f5f5f5;
+	border: 1px dotted #785;
+}
+
+pre.result {
+	width: 600px;
+	margin: 10px 0 0 10px;
+	padding: 10px;
+	border: 0;
+	font-size: 12px;
+	font-style: italic;
+	color: #ff00ff;
+	border: 1px dotted #785;
+	background: #f5f5f5;
+	border: 1px dotted #785;
+}
+
+/*----------------------------------ul and li--------------------------------------*/
+div#navsecond li,div#sidebar li {
+	list-style: none;
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+
+div#navsecond h2,div#sidebar h2 {
+	margin: 10px 0 0 12px;
+}
+
+div#navsecond ul,div#sidebar ul {
+	margin: 0;
+	padding: 0;
+}
+
+div#navsecond ul,div#sidebar ul {
+	margin-left: 12px;
+}
+
+div#navsecond li,div#sidebar li {
+	list-style: none;
+}
+
+div#navsecond li.list_apart {
+	margin-top: 10px;
+}
+
+/*----------------------------link-----------------------------*/
+a:link,a:visited {
+	text-decoration: underline;
+	color: #900b09;
+	background: transparent;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #ff0000;
+	background: transparent;
+}
+
+a:active {
+	text-decoration: underline;
+	color: #ff0000;
+	background: transparent;
+}
+
+div#navsecond li.currentLink a:link,div#navsecond li.currentLink a:visited
+	{
+	text-decoration: none;
+	color: #ff0000;
+	background: transparent;
+}
+
+div#navsecond li.currentLink a:hover {
+	text-decoration: underline;
+	color: #ff0000;
+	background: transparent;
+}
+
+div#navsecond a:link,div#navsecond a:visited,div#sidebar a:link,div#sidebar a:visited
+	{
+	text-decoration: none;
+	color: #000;
+	background: transparent;
+}
+
+div#navsecond a:hover,div#sidebar a:hover {
+	text-decoration: underline;
+	color: #ff0000;
+	background: transparent;
+}

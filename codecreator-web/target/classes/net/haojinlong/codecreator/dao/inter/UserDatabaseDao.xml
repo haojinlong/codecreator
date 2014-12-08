@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.UserDatabaseDao">
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.DatabaseInfo"
+		id="t_database_info_mapper">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="db_key" property="dbKey" />
+		<result column="description" property="description" />
+		<result column="version" property="version" />
+		<result column="user_id" property="userId" />
+		<result column="proj_id" property="projId" />
+		<result column="proj_permission" property="projPermission" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="disabled" property="disabled" />
+		<result column="locked" property="locked" />
+	</resultMap>
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.User"
+		id="t_user_mapper">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="full_name" property="fullName" />
+		<result column="phone_no" property="phoneNo" />
+		<result column="email" property="email" />
+		<result column="create_time" property="createTime" />
+		<result column="is_available" property="isAvailable" />
+		<result column="expire_day" property="expireDay" />
+	</resultMap>
+
+
+
+	<!-- autocreate_start -->
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.UserDatabase" id="t_user_database_mapper">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="database_id" property="databaseId" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from t_user_database
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		select count(1) from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		
+		select count(1) from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		insert into t_user_database(user_id,database_id)
+		values(#{userId},#{databaseId})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		update t_user_database
+		<set>
+			<if test="userId != null">user_id=#{userId}, </if>
+			<if test="databaseId != null">database_id=#{databaseId}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from t_user_database where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_user_database where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		delete from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase">
+		
+		delete from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="t_user_database_mapper">
+		select *
+		from t_user_database where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="t_user_database_mapper">
+		select *
+		from t_user_database
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase"
+		resultMap="t_user_database_mapper">
+		select *
+		from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserDatabase"
+		resultMap="t_user_database_mapper">
+		<if test="_parameter != null">
+			
+		</if>
+		select *
+		from t_user_database
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="databaseId != null">and database_id=#{databaseId}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+			<!-- autocreate_end -->
+
+	<select id="listDbByUser" parameterType="net.haojinlong.codecreator.dao.entity.User"
+		resultMap="t_database_info_mapper">
+		select tdi.*
+		from t_user_database tud left join t_database_info tdi on
+		tud.database_id=tdi.id
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and user_id=#{id}</if>
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine}, #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+	<select id="listUserByDatabaseInfo" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo"
+		resultMap="t_user_mapper">
+		select tu.* from t_user_database tud left join t_user tu on
+		tu.id=tud.user_id
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and tud.database_id=#{id}</if>
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine}, #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+</mapper>

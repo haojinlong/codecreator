@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.DatabaseInfoDao">
+	<!-- autocreate_start -->
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.DatabaseInfo" id="t_database_info_mapper">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="db_key" property="dbKey" />
+		<result column="description" property="description" />
+		<result column="version" property="version" />
+		<result column="user_id" property="userId" />
+		<result column="proj_id" property="projId" />
+		<result column="proj_permission" property="projPermission" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="disabled" property="disabled" />
+		<result column="last_table_idx" property="lastTableIdx" />
+		<result column="locked" property="locked" />
+		<result column="lock_user_id" property="lockUserId" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from t_database_info
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		select count(1) from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="dbKey != null">and db_key=#{dbKey}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="dbKey != null">
+				<bind name="_like_db_key" value="'%' + _parameter.dbKey + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		select count(1) from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="dbKey != null">and db_key like #{_like_dbKey}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		insert into t_database_info(name,db_key,description,version,user_id,proj_id,proj_permission,create_time,update_time,disabled,last_table_idx,locked,lock_user_id)
+		values(#{name},#{dbKey},#{description},#{version},#{userId},#{projId},#{projPermission},#{createTime},#{updateTime},#{disabled},#{lastTableIdx},#{locked},#{lockUserId})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		update t_database_info
+		<set>
+			<if test="name != null">name=#{name}, </if>
+			<if test="dbKey != null">db_key=#{dbKey}, </if>
+			<if test="description != null">description=#{description}, </if>
+			<if test="version != null">version=#{version}, </if>
+			<if test="userId != null">user_id=#{userId}, </if>
+			<if test="projId != null">proj_id=#{projId}, </if>
+			<if test="projPermission != null">proj_permission=#{projPermission}, </if>
+			<if test="createTime != null">create_time=#{createTime}, </if>
+			<if test="updateTime != null">update_time=#{updateTime}, </if>
+			<if test="disabled != null">disabled=#{disabled}, </if>
+			<if test="lastTableIdx != null">last_table_idx=#{lastTableIdx}, </if>
+			<if test="locked != null">locked=#{locked}, </if>
+			<if test="lockUserId != null">lock_user_id=#{lockUserId}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from t_database_info where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_database_info where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		delete from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="dbKey != null">and db_key=#{dbKey}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="dbKey != null">
+				<bind name="_like_db_key" value="'%' + _parameter.dbKey + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		delete from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="dbKey != null">and db_key like #{_like_dbKey}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="t_database_info_mapper">
+		select *
+		from t_database_info where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="t_database_info_mapper">
+		select *
+		from t_database_info
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo"
+		resultMap="t_database_info_mapper">
+		select *
+		from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="dbKey != null">and db_key=#{dbKey}</if>
+					<if test="description != null">and description=#{description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.DatabaseInfo"
+		resultMap="t_database_info_mapper">
+		<if test="_parameter != null">
+			<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="dbKey != null">
+				<bind name="_like_db_key" value="'%' + _parameter.dbKey + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		</if>
+		select *
+		from t_database_info
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="dbKey != null">and db_key like #{_like_dbKey}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+					<if test="version != null">and version=#{version}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="projId != null">and proj_id=#{projId}</if>
+					<if test="projPermission != null">and proj_permission=#{projPermission}</if>
+					<if test="createTime != null">and create_time=#{createTime}</if>
+					<if test="updateTime != null">and update_time=#{updateTime}</if>
+					<if test="disabled != null">and disabled=#{disabled}</if>
+					<if test="lastTableIdx != null">and last_table_idx=#{lastTableIdx}</if>
+					<if test="locked != null">and locked=#{locked}</if>
+					<if test="lockUserId != null">and lock_user_id=#{lockUserId}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+							<!-- autocreate_end -->
+</mapper>

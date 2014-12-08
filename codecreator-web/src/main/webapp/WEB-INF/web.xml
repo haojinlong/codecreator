@@ -27,4 +27,13 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>default-config-filter</filter-name>
+		<filter-class>net.haojinlong.codecreator.web.filter.DefaultConfigFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>default-config-filter</filter-name>
+		<url-pattern>/config/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

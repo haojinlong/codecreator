@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.RoleDao">
+	<!-- autocreate_start -->
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.Role" id="t_role_mapper">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="description" property="description" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from t_role
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		select count(1) from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		select count(1) from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		insert into t_role(name,description)
+		values(#{name},#{description})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		update t_role
+		<set>
+			<if test="name != null">name=#{name}, </if>
+			<if test="description != null">description=#{description}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from t_role where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_role where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		delete from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.Role">
+		<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		delete from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="t_role_mapper">
+		select *
+		from t_role where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="t_role_mapper">
+		select *
+		from t_role
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.Role"
+		resultMap="t_role_mapper">
+		select *
+		from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name=#{name}</if>
+					<if test="description != null">and description=#{description}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.Role"
+		resultMap="t_role_mapper">
+		<if test="_parameter != null">
+			<if test="name != null">
+				<bind name="_like_name" value="'%' + _parameter.name + '%'" />
+			</if>
+			<if test="description != null">
+				<bind name="_like_description" value="'%' + _parameter.description + '%'" />
+			</if>
+			
+		</if>
+		select *
+		from t_role
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="name != null">and name like #{_like_name}</if>
+					<if test="description != null">and description like #{_like_description}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+			<!-- autocreate_end -->
+</mapper>

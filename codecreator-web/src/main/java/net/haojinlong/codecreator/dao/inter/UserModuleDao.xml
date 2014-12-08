@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.haojinlong.codecreator.dao.inter.UserModuleDao">
+	<!-- autocreate_start -->
+
+	<resultMap type="net.haojinlong.codecreator.dao.entity.UserModule" id="t_user_module_mapper">
+		<id column="id" property="id" />
+		<result column="module_code" property="moduleCode" />
+		<result column="user_id" property="userId" />
+		<result column="oper_code" property="operCode" />
+		
+	</resultMap>
+
+	<select id="countAll" resultType="int">
+		select count(1) from t_user_module
+	</select>
+
+	<select id="countByEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		select count(1) from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code=#{moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code=#{operCode}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<select id="countLikeEntity" resultType="int"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		<if test="moduleCode != null">
+				<bind name="_like_module_code" value="'%' + _parameter.moduleCode + '%'" />
+			</if>
+			<if test="operCode != null">
+				<bind name="_like_oper_code" value="'%' + _parameter.operCode + '%'" />
+			</if>
+			
+		select count(1) from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code like #{_like_moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code like #{_like_operCode}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</select>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		insert into t_user_module(module_code,user_id,oper_code)
+		values(#{moduleCode},#{userId},#{operCode})
+	</insert>
+
+	<update id="update" parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		update t_user_module
+		<set>
+			<if test="moduleCode != null">module_code=#{moduleCode}, </if>
+			<if test="userId != null">user_id=#{userId}, </if>
+			<if test="operCode != null">oper_code=#{operCode}, </if>
+			
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		<if test="_parameter != null">
+			<if test="id != null">
+				delete from t_user_module where id=#{id}
+			</if>
+		</if>
+	</delete>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_user_module where
+		id=#{id}
+	</delete>
+
+
+	<delete id="deleteByEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		delete from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code=#{moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code=#{operCode}</if>
+					
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<delete id="deleteLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserModule">
+		<if test="moduleCode != null">
+				<bind name="_like_module_code" value="'%' + _parameter.moduleCode + '%'" />
+			</if>
+			<if test="operCode != null">
+				<bind name="_like_oper_code" value="'%' + _parameter.operCode + '%'" />
+			</if>
+			
+		delete from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code like #{_like_moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code like #{_like_operCode}</if>
+						
+				</when>
+			</choose>
+		</where>
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="t_user_module_mapper">
+		select *
+		from t_user_module where id = #{id}
+	</select>
+
+	<select id="listAll" resultMap="t_user_module_mapper">
+		select *
+		from t_user_module
+	</select>
+
+	<select id="listByEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserModule"
+		resultMap="t_user_module_mapper">
+		select *
+		from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code=#{moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code=#{operCode}</if>
+					
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+
+
+	<select id="listLikeEntity" parameterType="net.haojinlong.codecreator.dao.entity.UserModule"
+		resultMap="t_user_module_mapper">
+		<if test="_parameter != null">
+			<if test="moduleCode != null">
+				<bind name="_like_module_code" value="'%' + _parameter.moduleCode + '%'" />
+			</if>
+			<if test="operCode != null">
+				<bind name="_like_oper_code" value="'%' + _parameter.operCode + '%'" />
+			</if>
+			
+		</if>
+		select *
+		from t_user_module
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					<if test="id != null">and id=#{id}</if>
+					<if test="moduleCode != null">and module_code like #{_like_moduleCode}</if>
+					<if test="userId != null">and user_id=#{userId}</if>
+					<if test="operCode != null">and oper_code like #{_like_operCode}</if>
+						
+				</when>
+			</choose>
+		</where>
+		<if test="_orderBy != null"> order by ${_orderBy} </if>
+		<if test="_startLine != null">
+			<if test="_linesPerPage != null">
+				limit #{_startLine},  #{_linesPerPage}
+			</if>
+		</if>
+	</select>
+				<!-- autocreate_end -->
+</mapper>
