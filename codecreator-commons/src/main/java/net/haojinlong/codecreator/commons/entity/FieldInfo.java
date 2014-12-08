@@ -23,6 +23,8 @@ public class FieldInfo {
 	private boolean isBoolean;
 	// 是否为java.sql.Date，需特殊处理
 	private boolean isSqlDate;
+	// 是否为TimsStamp类型，需特殊处理
+	private boolean isTimeStamp;
 	// 对应的java类
 	private String javaType;
 	// 是否需要引入此java类
@@ -103,6 +105,21 @@ public class FieldInfo {
 	 */
 	public void setShortType(String shortType) {
 		this.shortType = shortType;
+	}
+
+	/**
+	 * @return the isTimeStamp
+	 */
+	public boolean isTimeStamp() {
+		return isTimeStamp;
+	}
+
+	/**
+	 * @param isTimeStamp
+	 *            the isTimeStamp to set
+	 */
+	public void setTimeStamp(boolean isTimeStamp) {
+		this.isTimeStamp = isTimeStamp;
 	}
 
 	/*

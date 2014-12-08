@@ -32,6 +32,8 @@ public class ColumnInfo {
 	private String fieldName;
 	// 对应的映射类的属性
 	private FieldInfo fieldInfo;
+	// 是否为主键
+	private boolean primaryKey;
 
 	/**
 	 * @return the columnName
@@ -136,6 +138,21 @@ public class ColumnInfo {
 	 */
 	public void setDefaultJavaType(String defaultJavaType) {
 		this.defaultJavaType = defaultJavaType;
+	}
+
+	/**
+	 * @return the primaryKey
+	 */
+	public boolean isPrimaryKey() {
+		return primaryKey;
+	}
+
+	/**
+	 * @param primaryKey
+	 *            the primaryKey to set
+	 */
+	public void setPrimaryKey(boolean primaryKey) {
+		this.primaryKey = primaryKey;
 	}
 
 	public void initFieldInfo() {
